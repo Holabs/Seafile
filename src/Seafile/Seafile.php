@@ -12,6 +12,7 @@ use Holabs\Seafile\Methods\TLibrary;
 use Nette\Http\UrlScript;
 use Nette\SmartObject;
 use Nette\Utils\ArrayHash;
+use Nette\Utils\JsonException;
 use Nette\Utils\Strings;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -114,7 +115,7 @@ class Seafile {
 	 * @return User|null
 	 * @throws ApiException
 	 * @throws AuthenticationException
-	 * @throws \Nette\Utils\JsonException
+	 * @throws JsonException
 	 */
 	public function authenticate(string $login, string $password, string $code = NULL) {
 		$params = [
@@ -139,6 +140,16 @@ class Seafile {
 		}
 
 		$token = $result->getBody()->offsetGet('token');
+
+		return $this->login($token);
+	}
+
+	/**
+	 * @param string $token
+	 * @return User|null
+	 * @throws JsonException
+	 */
+	public function login(string $token) {
 
 		$result = $this->api(self::API_URL . '/account/info/', self::GET, [], ['Authorization' => "Token {$token}"]);
 
@@ -168,7 +179,7 @@ class Seafile {
 	 * @param array  $headers
 	 * @return ApiResponse
 	 * @throws ApiException
-	 * @throws \Nette\Utils\JsonException
+	 * @throws JsonException
 	 */
 	public function api(
 		string $function,
