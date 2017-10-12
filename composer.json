@@ -1,0 +1,24 @@
+{
+	"name": "holabs/seafile",
+	"description": "Seafile low level API for PHP",
+	"keywords": ["seafile", "nette"],
+	"license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
+	"authors": [
+		{
+			"name": "Tomáš Holan",
+			"homepage": "https://tomasholan.eu"
+		}
+	],
+	"require": {
+		"php": ">=7.1",
+		"nette/utils": "^2.4",
+		"guzzlehttp/guzzle": "^6.3"
+	},
+	"suggest": {
+		"tracy/tracy": "Debugger panel for show your communications and better debugging",
+        "nette/database": "Database layer for persist your logs"
+	},
+	"autoload": {
+		"classmap": ["src"]
+	}
+}
