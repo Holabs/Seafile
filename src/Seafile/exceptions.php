@@ -2,9 +2,7 @@
 
 namespace Holabs\Seafile;
 
-use Nette\Application\ApplicationException;
 use Nette\InvalidStateException;
-use Nette\Security\AuthenticationException as NetteAuthenticationException;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -21,7 +19,7 @@ class ConfigurationException extends InvalidStateException {
  * @package      holabs/seafile
  * @copyright    Copyright © 2017, Tomáš Holan [www.tomasholan.eu]
  */
-class ApiException extends ApplicationException {
+class ApiException extends InvalidStateException {
 
 	private $response = NULL;
 
@@ -49,6 +47,11 @@ class ApiException extends ApplicationException {
 
 }
 
+/**
+ * @author       Tomáš Holan <mail@tomasholan.eu>
+ * @package      holabs/seafile
+ * @copyright    Copyright © 2017, Tomáš Holan [www.tomasholan.eu]
+ */
 class ArgumentException extends ApiException {
 
 }
@@ -58,6 +61,6 @@ class ArgumentException extends ApiException {
  * @package      holabs/seafile
  * @copyright    Copyright © 2017, Tomáš Holan [www.tomasholan.eu]
  */
-class AuthenticationException extends NetteAuthenticationException {
+class AuthenticationException extends InvalidStateException {
 
 }
