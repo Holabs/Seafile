@@ -2,7 +2,6 @@
 
 namespace Holabs\Seafile;
 
-use ErrorException;
 use Nette\Application\ApplicationException;
 use Nette\InvalidStateException;
 use Nette\Security\AuthenticationException as NetteAuthenticationException;
