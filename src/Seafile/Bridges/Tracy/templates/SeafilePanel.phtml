@@ -1,0 +1,34 @@
+<?php
+
+use Tracy\Dumper;
+
+/**
+ * @var \stdClass[] $requests
+ * @var int $count
+ * @var float $totalTime
+ * @var string $name
+ * @var string $storage
+ */
+
+?>
+
+<style>
+	#tracy-debug .holabs-seafile { min-width: 700px; }
+	#tracy-debug .holabs-seafile h2 { font-size: 22px; font-weight: bold; }
+	#tracy-debug .holabs-seafile table { width: 100%; }
+	#tracy-debug .holabs-seafile table th { width: 80px; }
+</style>
+
+<h1>Queries: <?= $count; ?>, time: <?= $totalTime ? sprintf('%0.3f', $totalTime * 1000) : '0'; ?>&nbsp;ms</h1>
+<div class="tracy-inner holabs-seafile">
+	<?php foreach($requests as $call): ?>
+		<h2><?= strtoupper((string) $call->request->getMethod()); ?> <?= (string) $call->request->getUri(); ?></h2>
+		<table>
+			<tr><th>Time</th><td><?= number_format($call->time * 1000, 2, '.', ' ') ?>&nbsp;ms</td></tr>
+			<tr><th>Server</th><td><?= Dumper::toHtml($call->seafile, ['collapse' => TRUE]); ?></td></tr>
+			<tr><th>Request</th><td><?= Dumper::toHtml($call->request, ['collapse' => TRUE]); ?></td></tr>
+			<tr><th>Response</th><td><?= Dumper::toHtml($call->response, ['collapse' => TRUE]); ?></td></tr>
+			<tr><th>Data</th><td><?= Dumper::toHtml($call->data, ['collapse' => TRUE]); ?></td></tr>
+		</table>
+	<?php endforeach; ?>
+</div>
