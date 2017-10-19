@@ -173,6 +173,14 @@ class Seafile {
 	}
 
 	/**
+	 * @return ApiResponse
+	 * @throws JsonException
+	 */
+	public function getClientLoginToken() {
+		return $this->api(self::API_URL . '/client-login/', self::POST);
+	}
+
+	/**
 	 * @param string $function
 	 * @param string $method
 	 * @param array  $params
