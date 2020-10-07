@@ -4,7 +4,7 @@
 namespace Holabs\Seafile\Bridges\Nette;
 
 use Holabs\Seafile\Seafile;
-use Nette\DI\Extensions\ExtensionsExtension;
+use Nette\DI\CompilerExtension;
 
 
 /**
@@ -12,7 +12,7 @@ use Nette\DI\Extensions\ExtensionsExtension;
  * @package      holabs/seafile
  * @copyright    Copyright © 2017, Tomáš Holan [www.tomasholan.eu]
  */
-class SeafileExtension extends ExtensionsExtension {
+class SeafileExtension extends CompilerExtension {
 
 	public $defaults = [
 		'url' => 'https://seacloud.cc/',
